@@ -12,11 +12,11 @@ class ProductsCategoriesApiController extends Controller
     /**
      * @var $langs
      */
-    public $langs = ['ar' => 'العربية' ,'en'  => 'English' ,'de'  => 'Deutsch' ,'tr'  => 'Turkish'];    
+    public $langs = ['ar' => 'العربية' ,'en'  => 'English' ,'de'  => 'Deutsch' ,'tr'  => 'Turkish'];
 
     /**
      * Get all products categories.
-     * 
+     *
      * @return JsonResponse
      */
     public function index(){
@@ -27,7 +27,7 @@ class ProductsCategoriesApiController extends Controller
 
     /**
      * Get product category which id = $id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */
@@ -39,7 +39,7 @@ class ProductsCategoriesApiController extends Controller
 
     /**
      * Store product category.
-     * 
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -51,14 +51,15 @@ class ProductsCategoriesApiController extends Controller
             if($request->filled($name)){
                 $productCategory->setTranslation('name', $key, $request->$name);
             }
-            
+
         }
         $productCategory->slug =  $request->slug;
 
         if($request->hasFile('image')){
-            $productCategory->image  =  $request->image->store('products',['disk' => 'public']);     
+            $productCategory->image  =  $request->image->store('products',['disk' => 'public']);
         }
-        
+
+        $productCategory->name   =  $request->user()->name;
         $productCategory->store_id   =  $request->user()->store_id;
         $productCategory->lang       =  \App::getLocale();
         $productCategory->save();
@@ -71,11 +72,11 @@ class ProductsCategoriesApiController extends Controller
 
     /**
      * Update product category whose id = $id.
-     * 
+     *
      * @param Request $request
      * @param int $id
-     * 
-     * @return JsonResponse 
+     *
+     * @return JsonResponse
      */
     public function update(Request $request, $id){
         $ProductCategories = ProductCategories::find($id);
@@ -90,9 +91,9 @@ class ProductsCategoriesApiController extends Controller
         $ProductCategories->slug = $request->link;
 
         if($request->hasFile('image')){
-            $ProductCategories->image  =  $request->image->store('products',['disk' => 'public']);     
+            $ProductCategories->image  =  $request->image->store('products',['disk' => 'public']);
         }
-        
+
         $ProductCategories->save();
 
         return new JsonResponse([
@@ -104,7 +105,7 @@ class ProductsCategoriesApiController extends Controller
 
     /**
      * Delete product category.
-     * 
+     *
      * @param int $id
      * @return JsonReponse
      */

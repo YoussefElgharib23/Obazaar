@@ -23,8 +23,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::prefix('user')->middleware('auth:api')->group(function () {
         Route::get('/profile', 'UserApiController@profile');
         Route::get('/logout', 'UserApiController@logout');
-        Route::post('/update', 'UserApiController@update');
-        Route::post('/delete', 'UserApiController@delete');
+        Route::post('/update', 'UserApiController@update_profile');
         Route::post('/updatePassword', 'UserApiController@updatePassword');
     });
 
@@ -36,7 +35,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/update/{id}', 'PostsApiController@update');
         Route::post('/delete/{id}', 'PostsApiController@delete');
         Route::post('/duplicate/{id}', 'PostsApiController@duplicate');
-        
+
         // posts categories routes
         Route::prefix('categories')->middleware('auth:api')->group(function () {
             Route::get('/', 'PostsCategoriesApiController@index');

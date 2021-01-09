@@ -10,8 +10,8 @@ class PagesApiController extends Controller
 {
     /**
      * Get pages whose lang same as merchant lang.
-     * 
-     * @return JsonResponse 
+     *
+     * @return JsonResponse
      */
     public function index(){
         return new JsonResponse([
@@ -21,9 +21,9 @@ class PagesApiController extends Controller
 
     /**
      * Get page which id = $id.
-     * 
+     *
      * @param int $id
-     * @return JsonResponse 
+     * @return JsonResponse
      */
     public function details($id){
         return new JsonResponse([
@@ -33,20 +33,20 @@ class PagesApiController extends Controller
 
     /**
      * Store page.
-     * 
+     *
      * @param Request $request
      * @return JsonResponse
      */
     public function store(Request $request){
         $page           =  new Page;
         $page->title    =  $request->title;
-        $page->content  =  $request->content;
+        $page->content  =  $request['content'];
         $page->slug     =  str_slug($request->title);
-        $page->store_id =  $request->user()->store_id;
+        $page->store_id =  $request->user()->store_id ?? 1;
         $page->lang     =  \App::getLocale();
 
         $page->save();
-        
+
         return new JsonResponse([
             'status' => 'success',
             'message' => 'Page created successfully'
@@ -55,10 +55,10 @@ class PagesApiController extends Controller
 
     /**
      * Update page whose id = $id.
-     * 
+     *
      * @param Request $request
      * @param int $id
-     * 
+     *
      * @return JsonResponse
      */
     public function update(Request $request, $id){
@@ -67,8 +67,8 @@ class PagesApiController extends Controller
         $page->title    =  $request->title;
         $page->content  =  $request->content;
         $page->slug     =  str_slug($request->title);
-        
-        $page->save(); 
+
+        $page->save();
 
         return new JsonResponse([
             'status' => 'success',
@@ -78,7 +78,7 @@ class PagesApiController extends Controller
 
     /**
      * Delete page whose id = $id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */
@@ -94,7 +94,7 @@ class PagesApiController extends Controller
 
     /**
      * Duplicate page whose id = $id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */

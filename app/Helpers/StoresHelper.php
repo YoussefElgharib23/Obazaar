@@ -8,7 +8,7 @@ use Hash;
 class StoresHelper {
 
 
-    
+
     public function rules()
     {
         return [
@@ -43,7 +43,7 @@ class StoresHelper {
         }
 
         if($request->hasFile('thumbnail')){
-            $store->thumbnail  = $request->thumbnail->store('stores',['disk' => 'public']);     
+            $store->thumbnail  = $request->thumbnail->store('stores',['disk' => 'public']);
         }
 
         $store->save();
@@ -77,23 +77,23 @@ class StoresHelper {
         $user->password = Hash::make($request->password);
         $user->save();
         return $user;
-        
+
     }
 
- 
-    
+
+
 
     // create and update Store
     public static function save($request){
 
         $store  = new self;
-        
-                // create the user 
+
+                // create the user
         $user = $store->createUser($request);
 
-        // create the store 
-        $store = $store->createStore($request,$user->id);        
-        
+        // create the store
+        $store = $store->createStore($request,$user->id);
+
         // set the store to user
         $user->store_id = $store->id;
         $user->save();
@@ -101,7 +101,7 @@ class StoresHelper {
 
 
 
-        
+
 
     }
 

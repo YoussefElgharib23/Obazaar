@@ -12,7 +12,7 @@ class PostsCategoriesApiController extends Controller
 
     /**
      * Get all posts categories.
-     * 
+     *
      * @return JsonResponse
      */
     public function index(){
@@ -23,11 +23,11 @@ class PostsCategoriesApiController extends Controller
 
     /**
      * Get posts categories which id = $id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */
-    public function details($id){
+    public function details(int $id){
         return new JsonResponse([
             'postCategory' => PostCategories::find($id)
         ]);
@@ -45,10 +45,10 @@ class PostsCategoriesApiController extends Controller
             'message' => 'post category created successfully'
         ]);
     }
-    
+
     /**
      * Update post category which id = $id.
-     * 
+     *
      * @param Request $request
      * @param int $id
      * @return JsonResponse
@@ -69,7 +69,7 @@ class PostsCategoriesApiController extends Controller
 
     /**
      * Delete post category which id = $id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */

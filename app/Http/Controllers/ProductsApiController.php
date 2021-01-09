@@ -12,7 +12,7 @@ class ProductsApiController extends Controller
 {
     /**
      * Get all products.
-     * 
+     *
      * @return JsonResponse
      */
     public function index()
@@ -24,7 +24,7 @@ class ProductsApiController extends Controller
 
     /**
      * Get product by its id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */
@@ -36,14 +36,14 @@ class ProductsApiController extends Controller
 
     /**
      * Store product.
-     * 
+     *
      * @param Request $request
      * @return JsonResponse
      */
     public function store(Request $request){
         $content = new Product;
-        ProductHelper::save($content,$request);
-        
+        ProductHelper::save($content, $request);
+
         return new JsonResponse([
             'status' => 'success',
             'message' => 'Product created successfully'
@@ -52,7 +52,7 @@ class ProductsApiController extends Controller
 
     /**
      * Edit product whose id = $id.
-     * 
+     *
      * @param Request $request
      * @param int $id
      * @return JsonResponse
@@ -69,7 +69,7 @@ class ProductsApiController extends Controller
 
     /**
      * Delete product whose id = $id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */
@@ -88,7 +88,7 @@ class ProductsApiController extends Controller
 
     /**
      * Activate product whose id = $id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */
@@ -105,7 +105,7 @@ class ProductsApiController extends Controller
 
     /**
      * Deactivate product whose id = $id.
-     * 
+     *
      * @param int $id
      * @return JsonResponse
      */

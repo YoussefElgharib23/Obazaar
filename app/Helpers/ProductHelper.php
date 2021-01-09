@@ -12,21 +12,21 @@ class ProductHelper {
 
 
     // create and update Product
-    public static function save($content,$request){
+    public static function save($content, $request){
 
         // upload the thumbnail
-        $thumbnail = $request->ProductThumbnail ?? ''; 
+        $thumbnail = $request->ProductThumbnail ?? '';
 
         $gallery = $request->gallery ? implode('|||', $request->gallery) : '';
 
         // upload the gallery and get images list imploded
         //$gallery   = self::uploadGallery($request);
-        
+
         // create slug from product name to use it for seo
         $slug = self::slugify($content, $request);
         // create videos list imploded
         $videos = self::videos($request);
-        
+
         foreach (\System::$LANGS_NAME  as $key => $value) {
             $name = 'title_'.$key;
             $desc = 'description_'.$key;
@@ -39,14 +39,16 @@ class ProductHelper {
             if($request->filled($desc))
                 $content->setTranslation('description', $key, $request->$desc);
         }
-//dd($request);
+        //dd($request);
+        $content->name = $request->name;
+        $content->description = $request->description;
         $content->thumbnail   =  $thumbnail;
         $content->gallery     =  $gallery;
         $content->videos      =  $videos;
         $content->price       =  str_replace(',',".",$request->price);
         $content->statue      =  $request->statue;
         $content->categoryID  =  $request->category;
-        
+
         $content->weight      =  $request->weight;
         $content->width       =  $request->width;
         $content->length      =  $request->length;
@@ -104,7 +106,7 @@ class ProductHelper {
             if($request->filled($name))
                 $content->setTranslation('slug', $key, Slug::create($request->$name,'\App\Models\Product'));
         }
-        return $content ?? ''; 
+        return $content ?? '';
     }
 
     public static function videos($request) {
