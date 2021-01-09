@@ -19,6 +19,7 @@
         "hisorange/browser-detect": "^4.2",
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.2",
+        "laravel/passport": "~9.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.1",
         "mobiledetect/mobiledetectlib": "^2.8",
