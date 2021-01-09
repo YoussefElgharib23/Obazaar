@@ -74,7 +74,7 @@ class UsersHelper {
         // Mail::send($emailView, ['user' => $user, 'emailContent' => $emailContent], function ($m) use ($user, $emailSubject) {
         //                 $m->from('support@email.com', 'emailName');
         //                 $m->to($user->email, $user->fname)->subject($emailSubject);
-        });
+        // });
 
     }
 
