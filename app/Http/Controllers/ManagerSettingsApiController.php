@@ -9,13 +9,13 @@ class ManagerSettingsApiController extends Controller
 {
     public function update(Request $request){
         if($request->hasFile('logo')){
-            $logo = $request->logo->store('media',['disk' => 'public']);   
-           baseSetting(compact('logo'));  
+            $logo = $request->logo->store('media',['disk' => 'public']);
+           baseSetting(compact('logo'));
         }
 
         if($request->hasFile('favicon')){
-            $favicon = $request->favicon->store('media',['disk' => 'public']);   
-           baseSetting(compact('favicon'));  
+            $favicon = $request->favicon->store('media',['disk' => 'public']);
+            baseSetting(compact('favicon'));
         }
 
         baseSetting(['sitename'             => $request->name]);
